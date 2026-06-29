@@ -35,7 +35,6 @@
 ├── 08-ADC/        # 模数转换
 ├── 09-LCD显示/    # LCD1602
 └── docs/          # 学习笔记
-```
 
 ## 作者
 - **freedom** (GitHub: @FREEdom07289)
