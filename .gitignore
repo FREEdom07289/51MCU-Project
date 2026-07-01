@@ -1,0 +1,23 @@
+# Keil uVision 构建产物
+Listings/
+Objects/
+*.lst
+*.m51
+*.obj
+*.__i
+*.hex
+*.lnp
+*.build_log.htm
+
+# Keil uVision 用户配置文件（每台机器不同）
+*.uvgui.*
+*.uvopt
+
+# VSCode 插件日志
+*.log
+.vscode/keil-assistant.log
+.vscode/uv4.log.lock
+
+# 系统文件
+Thumbs.db
+Desktop.ini

@@ -65,8 +65,8 @@ tags: [51单片机, 索引, 学习路径]
 
 | 实验 | Keil工程路径 | 源码 | 核心知识点 |
 |:---|:---|:---|:---|
-| 点亮LED | `Keil project/1-1点亮一个LED/` | [main.c](../Keil%20project/1-1点亮一个LED/main.c) | `sbit LED1 = P2^0;` |
-| LED闪烁 | `Keil project/1-2LED闪烁/` | [main.c](../Keil%20project/1-2LED闪烁/main.c) | `Delay()` + `P2 = 0x00/0xFF` |
+| 点亮LED | `Keil project/01-点亮LED/` | [main.c](../Keil%20project/01-点亮LED/main.c) | `sbit LED1 = P2^0;` |
+| LED闪烁 | `Keil project/02-LED闪烁/` | [main.c](../Keil%20project/02-LED闪烁/main.c) | `Delay()` + `P2 = 0x00/0xFF` |
 | 流水灯A | `Keil project/1-3LED流水灯/` | [main-手写移位.c](../Keil%20project/1-3LED流水灯/main-手写移位.c) | `(x<<1)\|(x>>7)` |
 | 流水灯B | 同上 | [main-keil头文件.c](../Keil%20project/1-3LED流水灯/main-keil头文件.c) | `_crol_(x, 1)` |
 | 流水灯C | 同上 | [main.c](../Keil%20project/1-3LED流水灯/main.c) | 双向+`typedef`+`#define` |
@@ -106,11 +106,10 @@ tags: [51单片机, 索引, 学习路径]
 │   ├── 工具库.md              ← 头文件/typedef/延时函数
 │   └── 学习画像.md
 ├── Keil project/             ← 🔧 Keil工程（原始代码）
-│   ├── 1-1点亮一个LED/
-│   ├── 1-2LED闪烁/
+│   ├── 01-点亮LED/
+│   ├── 02-LED闪烁/
 │   └── 1-3LED流水灯/          ← 含3种实现
 ├── raw_logs/                 ← 📋 DeepSeek原始聊天备份
-├── 01-LED/                   ← LED实验README
 ├── docs/
 └── README.md                 ← 项目主页
 ```

@@ -26,31 +26,30 @@
 ## 目录结构
 ```
 普中51单片机/
-├── 01-LED/          # LED控制（点亮、闪烁、流水灯）
-├── Keil project/    # Keil工程文件（原始代码）
-│   ├── 1-1点亮一个LED/
-│   ├── 1-2LED闪烁/
-│   └── 1-3LED流水灯/   ← 含3种实现方法
-├── notes/           # 📝 学习笔记（按主题分类）
-│   ├── README.md    ← 笔记索引
+├── .gitignore        # 排除Keil构建产物
+├── README.md         # 项目主页
+├── Keil project/     # 🔧 Keil工程（实验源码）
+│   ├── 01-点亮LED/    ← 含README
+│   ├── 02-LED闪烁/    ← 含README
+│   └── 1-3LED流水灯/   ← 含3种实现+README
+├── notes/            # 📝 学习笔记（按主题分类）
+│   ├── README.md     ← 笔记索引
 │   ├── LED.md
 │   ├── 按键.md
 │   ├── 模块原理图.md
 │   ├── 工具库.md
 │   └── 学习画像.md
-├── raw_logs/        # 📋 DeepSeek原始聊天记录
-├── 02-按键/         # （待开始）
-├── 03-数码管/       # （待开始）
-└── docs/            # 参考文档
+├── raw_logs/         # 📋 DeepSeek原始聊天记录
+└── docs/             # 参考文档（原理图PDF等）
 ```
 
-## 01-LED 实验汇总
+## LED 实验汇总
 
-| 实验 | Keil工程 | 知识点 | 代码文件 |
+| 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 1-1 点亮LED | `Keil project/1-1点亮一个LED/` | `sbit`、单引脚控制 | [main.c](Keil%20project/1-1点亮一个LED/main.c) |
-| 1-2 LED闪烁 | `Keil project/1-2LED闪烁/` | 整组P2赋值、延时函数 | [main.c](Keil%20project/1-2LED闪烁/main.c) |
-| 1-3 流水灯 | `Keil project/1-3LED流水灯/` | 手写移位、`_crol_`、`typedef` | [3个版本](Keil%20project/1-3LED流水灯/) |
+| 01-点亮LED | `Keil project/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/01-点亮LED/main.c) |
+| 02-LED闪烁 | `Keil project/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/02-LED闪烁/main.c) |
+| 03-流水灯 | `Keil project/1-3LED流水灯/` | 手写移位、`_crol_`/`_cror_`、`typedef` | [3个版本](Keil%20project/1-3LED流水灯/) |
 
 > 📖 详细笔记：[notes/LED.md](notes/LED.md)
 
