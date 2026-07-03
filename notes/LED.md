@@ -225,7 +225,7 @@ void main(void)
 
 ### 4.3 方案B：使用 `_crol_` + `_cror_` 库函数（双向移位）
 
-> 📁 `03-LED流水灯/调用头文件实现移位/main-keil头文件.c`
+> 📁 `03-LED流水灯/库函数移位/main-keil头文件.c`
 
 ```c
 #include <reg52.h>
@@ -364,7 +364,7 @@ void main()
 | [01-点亮LED/main.c](../Keil%20project/01-点亮LED/main.c) | `sbit`、单引脚控制、`while(1)` | ~12 |
 | [02-LED闪烁/main.c](../Keil%20project/02-LED闪烁/main.c) | `P2`整组赋值、延时函数、闪烁 | ~20 |
 | [03-流水灯/手写移位/main-手写移位.c](../Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) | 手写循环左移+右移 `(x<<1)\|(x>>7)` + `(x>>1)\|(x<<7)` | ~44 |
-| [03-流水灯/调用头文件/main-keil头文件.c](../Keil%20project/03-LED流水灯/调用头文件实现移位/main-keil头文件.c) | `_crol_`/`_cror_`双向移位 | ~45 |
+| [03-流水灯/库函数移位/main-keil头文件.c](../Keil%20project/03-LED流水灯/库函数移位/main-keil头文件.c) | `_crol_`/`_cror_`双向移位 | ~45 |
 | [03-流水灯/双向移位/main.c](../Keil%20project/03-LED流水灯/双向移位/main.c) | `typedef`+`#define`+双向流水灯 | ~42 |
 | [LED练习部分/练习1/main.c](../Keil%20project/LED练习部分/练习1/main.c) | ✅ 8灯全亮1s灭0.5s（修正版） | ~23 |
 | [LED练习部分/练习2/main.c](../Keil%20project/LED练习部分/练习2/main.c) | 🆕 双灯流水灯 `0xFC`+`_crol_` | ~29 |

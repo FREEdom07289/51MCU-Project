@@ -33,12 +33,12 @@
 │   ├── 02-LED闪烁/    ← 8灯同步闪烁
 │   ├── 03-LED流水灯/   ← 3种方法（3个独立工程）
 │   │   ├── 手写移位/
-│   │   ├── 调用头文件实现移位/
+│   │   ├── 库函数移位/
 │   │   └── 双向移位/
 │   ├── LED练习部分/
 │   │   ├── 练习1/      ← 8灯亮1s灭0.5s
 │   │   └── 练习2/      ← 双灯流水灯
-│   └── 按键/           ← 按键初版（含x=P2错误分析）
+│   └── 05-按键/        ← 按键初版（含x=P2错误分析）
 ├── notes/            # 📝 学习笔记（按主题分类）
 │   ├── README.md     ← 笔记索引
 │   ├── LED.md
@@ -59,7 +59,7 @@
 | 01-点亮LED | `Keil project/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/01-点亮LED/main.c) |
 | 02-LED闪烁 | `Keil project/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/02-LED闪烁/main.c) |
 | 03-流水灯(A) | `Keil project/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [手写移位.c](Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) |
-| 03-流水灯(B) | `Keil project/03-LED流水灯/调用头文件实现移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/03-LED流水灯/调用头文件实现移位/main-keil头文件.c) |
+| 03-流水灯(B) | `Keil project/03-LED流水灯/库函数移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/03-LED流水灯/库函数移位/main-keil头文件.c) |
 | 03-流水灯(C) | `Keil project/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/03-LED流水灯/双向移位/main.c) |
 | 练习1 | `Keil project/LED练习部分/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/LED练习部分/练习1/main.c) |
 | 练习2 | `Keil project/LED练习部分/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/LED练习部分/练习2/main.c) |
