@@ -14,7 +14,7 @@
 | 模块 | 状态 | 说明 |
 |------|------|------|
 | 01-LED | ✅ 已完成 | 点亮LED + LED闪烁 + 流水灯（3种方法） |
-| 02-按键 | ⏳ 待开始 | 按键检测与消抖 |
+| 02-按键 | 🔄 进行中 | 按键检测初版代码（含典型错误分析） |
 | 03-数码管 | ⏳ 待开始 | 数码管显示 |
 | 04-定时器 | ⏳ 待开始 | 定时器/计数器 |
 | 05-中断 | ⏳ 待开始 | 中断系统 |
@@ -29,16 +29,25 @@
 ├── .gitignore        # 排除Keil构建产物
 ├── README.md         # 项目主页
 ├── Keil project/     # 🔧 Keil工程（实验源码）
-│   ├── 01-点亮LED/    ← 含README
-│   ├── 02-LED闪烁/    ← 含README
-│   └── 1-3LED流水灯/   ← 含3种实现+README
+│   ├── 01-点亮LED/    ← 单LED点亮
+│   ├── 02-LED闪烁/    ← 8灯同步闪烁
+│   ├── 03-LED流水灯/   ← 3种方法（3个独立工程）
+│   │   ├── 手写移位/
+│   │   ├── 调用头文件实现移位/
+│   │   └── 双向移位/
+│   ├── LED练习部分/
+│   │   ├── 练习1/      ← 8灯亮1s灭0.5s
+│   │   └── 练习2/      ← 双灯流水灯
+│   └── 按键/           ← 按键初版（含x=P2错误分析）
 ├── notes/            # 📝 学习笔记（按主题分类）
 │   ├── README.md     ← 笔记索引
 │   ├── LED.md
 │   ├── 按键.md
 │   ├── 模块原理图.md
 │   ├── 工具库.md
-│   └── 学习画像.md
+│   ├── 学习画像.md
+│   ├── Obsidian_51单片机LED笔记.md    ← Obsidian版（双链+标签）
+│   └── GitHub_LED实验完整手册.md      ← GitHub版（[TOC]+故障排查附录）
 ├── raw_logs/         # 📋 DeepSeek原始聊天记录
 └── docs/             # 参考文档（原理图PDF等）
 ```
@@ -49,7 +58,11 @@
 |:---|:---|:---|:---|
 | 01-点亮LED | `Keil project/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/01-点亮LED/main.c) |
 | 02-LED闪烁 | `Keil project/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/02-LED闪烁/main.c) |
-| 03-流水灯 | `Keil project/1-3LED流水灯/` | 手写移位、`_crol_`/`_cror_`、`typedef` | [3个版本](Keil%20project/1-3LED流水灯/) |
+| 03-流水灯(A) | `Keil project/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [手写移位.c](Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) |
+| 03-流水灯(B) | `Keil project/03-LED流水灯/调用头文件实现移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/03-LED流水灯/调用头文件实现移位/main-keil头文件.c) |
+| 03-流水灯(C) | `Keil project/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/03-LED流水灯/双向移位/main.c) |
+| 练习1 | `Keil project/LED练习部分/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/LED练习部分/练习1/main.c) |
+| 练习2 | `Keil project/LED练习部分/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/LED练习部分/练习2/main.c) |
 
 > 📖 详细笔记：[notes/LED.md](notes/LED.md)
 
