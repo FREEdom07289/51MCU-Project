@@ -12,7 +12,7 @@
                 "UNICODE",
                 "_UNICODE"
             ],
-            "intelliSenseMode": "windows-msvc-x86",
+            "intelliSenseMode": "windows-gcc-x86",
             "compilerPath": "D:/keil/C51/BIN/C51.exe"
         }
     ],

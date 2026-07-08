@@ -8,10 +8,18 @@ Objects/
 *.hex
 *.lnp
 *.build_log.htm
+*.plg
+*.dep
+*.i
+*.d
+*.map
+*.bak
 
 # Keil uVision 用户配置文件（每台机器不同）
 *.uvgui.*
 *.uvopt
+*.uvoptx
+*.uvguix.*
 
 # VSCode 插件日志
 *.log
@@ -21,3 +29,4 @@ Objects/
 # 系统文件
 Thumbs.db
 Desktop.ini
+.DS_Store

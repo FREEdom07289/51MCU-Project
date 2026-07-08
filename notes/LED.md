@@ -366,14 +366,14 @@ void main()
 | [03-流水灯/手写移位/main-手写移位.c](../Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) | 手写循环左移+右移 `(x<<1)\|(x>>7)` + `(x>>1)\|(x<<7)` | ~44 |
 | [03-流水灯/库函数移位/main-keil头文件.c](../Keil%20project/03-LED流水灯/库函数移位/main-keil头文件.c) | `_crol_`/`_cror_`双向移位 | ~45 |
 | [03-流水灯/双向移位/main.c](../Keil%20project/03-LED流水灯/双向移位/main.c) | `typedef`+`#define`+双向流水灯 | ~42 |
-| [LED练习部分/练习1/main.c](../Keil%20project/LED练习部分/练习1/main.c) | ✅ 8灯全亮1s灭0.5s（修正版） | ~23 |
-| [LED练习部分/练习2/main.c](../Keil%20project/LED练习部分/练习2/main.c) | 🆕 双灯流水灯 `0xFC`+`_crol_` | ~29 |
+| [04-LED练习/练习1/main.c](../Keil%20project/04-LED练习/练习1/main.c) | ✅ 8灯全亮1s灭0.5s（修正版） | ~23 |
+| [04-LED练习/练习2/main.c](../Keil%20project/04-LED练习/练习2/main.c) | 🆕 双灯流水灯 `0xFC`+`_crol_` | ~29 |
 
 ---
 
 ## 9. 练习1：8灯全亮1秒灭0.5秒（修正版）
 
-> 📁 `LED练习部分/练习1/main.c`
+> 📁 `04-LED练习/练习1/main.c`
 
 ### 9.1 修正后的代码
 
@@ -419,7 +419,7 @@ x = 0x00;              // ❌ 修改x无法改变硬件引脚电平
 
 ## 10. 练习2：双灯流水灯
 
-> 📁 `LED练习部分/练习2/main.c`
+> 📁 `04-LED练习/练习2/main.c`
 
 ### 10.1 完整代码
 
