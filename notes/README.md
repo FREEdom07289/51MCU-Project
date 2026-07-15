@@ -66,14 +66,14 @@ tags: [51单片机, 索引, 学习路径]
 
 | 实验 | Keil工程路径 | 源码 | 核心知识点 |
 |:---|:---|:---|:---|
-| 点亮LED | `Keil project/01-点亮LED/` | [main.c](../Keil%20project/01-点亮LED/main.c) | `sbit LED1 = P2^0;` |
-| LED闪烁 | `Keil project/02-LED闪烁/` | [main.c](../Keil%20project/02-LED闪烁/main.c) | `Delay()` + `P2 = 0x00/0xFF` |
-| 流水灯A | `Keil project/03-LED流水灯/手写移位/` | [main-手写移位.c](../Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) | `(x<<1)\|(x>>7)` |
-| 流水灯B | `Keil project/03-LED流水灯/库函数移位/` | [main-keil头文件.c](../Keil%20project/03-LED流水灯/库函数移位/main-keil头文件.c) | `_crol_(x, 1)` |
-| 流水灯C | `Keil project/03-LED流水灯/双向移位/` | [main.c](../Keil%20project/03-LED流水灯/双向移位/main.c) | 双向+`typedef`+`#define` |
-| 练习1 | `Keil project/04-LED练习/练习1/` | [main.c](../Keil%20project/04-LED练习/练习1/main.c) | 8灯亮1s灭0.5s |
-| 练习2 | `Keil project/04-LED练习/练习2/` | [main.c](../Keil%20project/04-LED练习/练习2/main.c) | 双灯流水灯 `0xFC`+`_crol_` |
-| 按键 | `Keil project/05-按键/` | [main.c](../Keil%20project/05-按键/main.c) | 消抖 + 方向切换 + 启停控制 |
+| 点亮LED | `Keil project/01-点亮LED/` | [main.c](../Keil%20project/LED/01-点亮LED/main.c) | `sbit LED1 = P2^0;` |
+| LED闪烁 | `Keil project/02-LED闪烁/` | [main.c](../Keil%20project/LED/02-LED闪烁/main.c) | `Delay()` + `P2 = 0x00/0xFF` |
+| 流水灯A | `Keil project/03-LED流水灯/手写移位/` | [main-手写移位.c](../Keil%20project/LED/03-LED流水灯/手写移位/main-手写移位.c) | `(x<<1)\|(x>>7)` |
+| 流水灯B | `Keil project/03-LED流水灯/库函数移位/` | [main-keil头文件.c](../Keil%20project/LED/03-LED流水灯/库函数移位/main-keil头文件.c) | `_crol_(x, 1)` |
+| 流水灯C | `Keil project/03-LED流水灯/双向移位/` | [main.c](../Keil%20project/LED/03-LED流水灯/双向移位/main.c) | 双向+`typedef`+`#define` |
+| 练习1 | `Keil project/04-LED练习/练习1/` | [main.c](../Keil%20project/LED/04-LED练习/练习1/main.c) | 8灯亮1s灭0.5s |
+| 练习2 | `Keil project/04-LED练习/练习2/` | [main.c](../Keil%20project/LED/04-LED练习/练习2/main.c) | 双灯流水灯 `0xFC`+`_crol_` |
+| 按键 | `Keil project/05-按键/` | [main.c](../Keil%20project/LED/05-按键/main.c) | 消抖 + 方向切换 + 启停控制 |
 
 ---
 

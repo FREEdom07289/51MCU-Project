@@ -33,16 +33,14 @@
 ├── .gitignore        # 排除Keil构建产物
 ├── README.md         # 项目主页（你在这里）
 ├── Keil project/     # 🔧 Keil工程（实验源码）
-│   ├── 01-点亮LED/    ← 单LED点亮
-│   ├── 02-LED闪烁/    ← 8灯同步闪烁
-│   ├── 03-LED流水灯/   ← 3种方法（3个独立工程）
-│   │   ├── 手写移位/
-│   │   ├── 库函数移位/
-│   │   └── 双向移位/
-│   ├── 04-LED练习/    ← LED综合练习
-│   │   ├── 练习1/      ← 8灯亮1s灭0.5s
-│   │   └── 练习2/      ← 双灯流水灯
-│   └── 05-按键/        ← 按键消抖 + 控制LED流水灯
+│   ├── LED/          ← LED类实验
+│   │   ├── 01-点亮LED/
+│   │   ├── 02-LED闪烁/
+│   │   ├── 03-LED流水灯/   ← 3种方法（3个独立工程）
+│   │   └── 04-LED练习/     ← 练习1 + 练习2
+│   └── 按键/          ← 按键类实验
+│       ├── 05-按键/         ← 按键控制LED流水灯（K1方向+K2启停）
+│       └── 06-独立按键控制LED亮灭/
 ├── notes/            # 📝 学习笔记（按主题分类）
 │   ├── README.md     ← 笔记索引
 │   ├── LED.md
@@ -61,13 +59,13 @@
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 01-点亮LED | `Keil project/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/01-点亮LED/main.c) |
-| 02-LED闪烁 | `Keil project/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/02-LED闪烁/main.c) |
-| 03-流水灯(A) | `Keil project/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [手写移位.c](Keil%20project/03-LED流水灯/手写移位/main-手写移位.c) |
-| 03-流水灯(B) | `Keil project/03-LED流水灯/库函数移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/03-LED流水灯/库函数移位/main-keil头文件.c) |
-| 03-流水灯(C) | `Keil project/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/03-LED流水灯/双向移位/main.c) |
-| 练习1 | `Keil project/04-LED练习/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/04-LED练习/练习1/main.c) |
-| 练习2 | `Keil project/04-LED练习/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/04-LED练习/练习2/main.c) |
+| 01-点亮LED | `Keil project/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/LED/01-点亮LED/main.c) |
+| 02-LED闪烁 | `Keil project/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/LED/02-LED闪烁/main.c) |
+| 03-流水灯(A) | `Keil project/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [手写移位.c](Keil%20project/LED/03-LED流水灯/手写移位/main-手写移位.c) |
+| 03-流水灯(B) | `Keil project/03-LED流水灯/库函数移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/LED/03-LED流水灯/库函数移位/main-keil头文件.c) |
+| 03-流水灯(C) | `Keil project/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/LED/03-LED流水灯/双向移位/main.c) |
+| 练习1 | `Keil project/04-LED练习/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/LED/04-LED练习/练习1/main.c) |
+| 练习2 | `Keil project/04-LED练习/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/LED/04-LED练习/练习2/main.c) |
 
 > 📖 详细笔记：[notes/LED.md](notes/LED.md)
 
@@ -75,7 +73,7 @@
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 05-按键 | `Keil project/05-按键/` | 软件消抖、按键扫描、方向切换、启停控制 | [main.c](Keil%20project/05-按键/main.c) |
+| 05-按键 | `Keil project/按键/05-按键/` | 软件消抖、按键扫描、方向切换、启停控制 | [main.c](Keil%20project/按键/05-按键/main.c) |
 
 ### 功能
 
