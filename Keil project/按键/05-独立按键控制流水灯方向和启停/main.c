@@ -6,8 +6,8 @@
  *
  * 硬件连接：
  *   LED（8个） → P2.0 ~ P2.7（低电平点亮）
- *   独立按键K1 → P3.0（按下为低电平）
- *   独立按键K2 → P3.1（按下为低电平）
+ *   独立按键K1 → P3.1（按下为低电平）
+ *   独立按键K2 → P3.0（按下为低电平）
  */
 
 #include <REGX52.H>
@@ -19,8 +19,8 @@ typedef unsigned char u8;
 
 // ===== 引脚定义 =====
 #define LED_PORT P2
-sbit KEY1 = P3^0;   // K1：切换流水方向
-sbit KEY2 = P3^1;   // K2：启停流水灯
+sbit KEY1 = P3^0;   // K2：切换流水方向
+sbit KEY2 = P3^1;   // K1：启停流水灯
 
 // ===== 全局变量 =====
 u8 direction = 0;   // 0=左移(D1→D8)，1=右移(D8→D1)
@@ -39,13 +39,13 @@ void main()
     {
         u8 key = key_scan();    // 扫描按键
 
-        // ① K1按下 → 切换流水方向
+        // ① K2按下 → 切换流水方向
         if(key == 1)
         {
             direction = !direction;   // 方向取反
         }
 
-        // ② K2按下 → 启停流水灯
+        // ② K1按下 → 启停流水灯
         if(key == 2)
         {
             running = !running;       // 运行状态取反
