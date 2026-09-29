@@ -53,4 +53,4 @@ void main(void)
 
 ---
 
-📖 详细笔记：[notes/LED.md](../../notes/LED.md)
+📖 详细笔记：[notes/LED.md](../../../notes/03_基础外设/LED.md)
