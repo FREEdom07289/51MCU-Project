@@ -12,7 +12,7 @@
 
 | 文件 | 说明 |
 |:---|:---|
-| [main-keil头文件.c](main-keil头文件.c) | `_crol_`/`_cror_`版双向流水灯 |
+| [main.c](User/main.c) | `_crol_`/`_cror_`版双向流水灯 |
 | [STARTUP.A51](STARTUP.A51) | Keil启动文件 |
 
 ## 核心代码

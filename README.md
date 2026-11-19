@@ -16,17 +16,25 @@
 |------|:---:|------|------|
 | 01-LED | ✅ 完成 | 2026-07-03 | 点亮LED + LED闪烁 + 流水灯（3种方法）+ 2个练习 |
 | 02-独立按键 | ✅ 完成 | 2026-07-25 | 消抖 + 方向切换/启停 + 亮灭翻转 + 二进制显示 + 移位（4个工程） |
+| 矩阵键盘 | 🔄 进行中 | - | 4×4 行列扫描；工程已三层化，扫描函数还没写完（暂无法编译通过） |
 | 03-蜂鸣器 | ✅ 完成 | 2026-09-24 | 有源蜂鸣器 + ULN2003D 驱动 |
 | 04-数码管 | ✅ 完成 | 2026-09-24 | 静态显示（74HC245+74HC138）+ 动态扫描 |
 | 05-LED点阵 | ✅ 完成 | 2026-09-24 | 74HC595 串转并 + 8×8 列扫描（显示心形） |
-| 06-定时器 | ⏳ 待开始 | - | 定时器/计数器 |
+| 06-定时器 | 🔄 进行中 | - | 笔记《定时器与中断》概念卡已完成，代码实验待做 |
 | 07-中断 | ⏳ 待开始 | - | 中断系统 |
 | 08-串口通信 | ⏳ 待开始 | - | UART串口通信 |
 | 09-I2C-SPI | ⏳ 待开始 | - | I2C/SPI总线 |
 | 10-ADC | ⏳ 待开始 | - | 模数转换 |
-| 11-LCD显示 | ⏳ 待开始 | - | LCD1602显示 |
+| 11-LCD显示 | ✅ 完成 | 2026-11-11 | LCD1602 显示 + 模块化重构（Driver/System/User） |
+| 工程规范 | ✅ 完成 | 2026-11-14 | 全部工程改为 User/Driver/System 三层，配套《代码规范》V2.1 |
 
 > 状态标记：✅ 完成 ｜ 🔄 进行中 ｜ ⏳ 待开始 ｜ ❌ 有问题待解决
+
+### 最近整理记录
+
+- **2026-11-13**：Obsidian 笔记结构整理（合并重复笔记、统一命名与页脚、修复断链），新增《模块化编程》《LCD1602》《74HC595》《定时器与中断》《LED原理详解》《代码规范》。
+- **2026-11-14**：Keil 工程全面三层化（User / Driver / System），新增 LCD1602、矩阵键盘工程；`Project.uvproj` 改为引用新目录。
+- **2026-11-20**：`notes/` 重新镜像 Obsidian 主库、更新学习进度。（矩阵键盘工程仍差扫描函数收尾）
 
 ## 目录结构
 
@@ -34,19 +42,21 @@
 普中51单片机/
 ├── .gitignore        # 排除Keil构建产物
 ├── README.md         # 项目主页（你在这里）
-├── Keil project/     # 🔧 Keil工程（实验源码）
-│   ├── LED/              ← 点亮 / 闪烁 / 流水灯(3种) / 练习(2个)
-│   ├── 按键/              ← 05~08 共 4 个独立按键工程
+├── Keil project/     # 🔧 Keil工程（每工程均为 User / Driver / System 三层）
+│   ├── LED/              ← 01~04：点亮 / 闪烁 / 流水灯(3种) / 练习(2个)
+│   ├── 按键/              ← 05~08 四个独立按键工程 + 按键模块化
+│   ├── 矩阵键盘/          ← 4×4 矩阵键盘扫描（扫描函数收尾中）
 │   ├── 数码管/            ← 静态数码管显示 + 动态数码管显示
-│   ├── 蜂鸣器/            ← 有源蜂鸣器驱动
-│   └── LED点阵实验/       ← 74HC595 + 8×8 点阵（显示心形）
+│   ├── 蜂鸣器/            ← 蜂鸣器播放音乐
+│   ├── LED点阵实验/       ← 74HC595 + 8×8 点阵（显示心形）
+│   └── LCD1602/          ← LCD1602显示 + LCD1602模块化
 ├── notes/            # 📝 学习笔记（Obsidian 主库的镜像快照）
-│   ├── 00_索引/           ← README、51单片机MOC、总目录
+│   ├── 00_索引/           ← 51单片机MOC（唯一入口）、学习画像
 │   ├── 01_入门准备/
-│   ├── 02_编程基础/
-│   ├── 03_基础外设/        ← LED、按键、蜂鸣器、数码管、LED点阵…
-│   ├── 04_参考资料/        ← 模块原理图、工具库、学习画像
-│   └── images/            ← 笔记配图
+│   ├── 02_编程基础/        ← 编程地基、C语言实战、模块化编程
+│   ├── 03_基础外设/        ← GPIO、LED、按键、蜂鸣器、数码管、点阵、定时器、LCD1602…
+│   ├── 04_参考资料/        ← 模块原理图、工具库、代码规范、LED实验完整手册
+│   └── images/            ← 笔记配图（LCD1602/ 为字符液晶配图）
 ├── raw_logs/         # 📋 DeepSeek原始聊天记录
 └── docs/             # 参考文档（原理图PDF等）
 ```
@@ -55,13 +65,13 @@
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 01-点亮LED | `Keil project/LED/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/LED/01-点亮LED/main.c) |
-| 02-LED闪烁 | `Keil project/LED/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/LED/02-LED闪烁/main.c) |
-| 03-流水灯(A) | `Keil project/LED/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [手写移位.c](Keil%20project/LED/03-LED流水灯/手写移位/main-手写移位.c) |
-| 03-流水灯(B) | `Keil project/LED/03-LED流水灯/库函数移位/` | `_crol_`/`_cror_` 双向移位 | [头文件.c](Keil%20project/LED/03-LED流水灯/库函数移位/main-keil头文件.c) |
-| 03-流水灯(C) | `Keil project/LED/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/LED/03-LED流水灯/双向移位/main.c) |
-| 练习1 | `Keil project/LED/04-LED练习/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/LED/04-LED练习/练习1/main.c) |
-| 练习2 | `Keil project/LED/04-LED练习/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/LED/04-LED练习/练习2/main.c) |
+| 01-点亮LED | `Keil project/LED/01-点亮LED/` | `sbit`、单引脚控制、低电平驱动 | [main.c](Keil%20project/LED/01-点亮LED/User/main.c) |
+| 02-LED闪烁 | `Keil project/LED/02-LED闪烁/` | 整组P2赋值、延时函数、`while(1)` | [main.c](Keil%20project/LED/02-LED闪烁/User/main.c) |
+| 03-流水灯(A) | `Keil project/LED/03-LED流水灯/手写移位/` | 手写循环左移+右移位运算 | [main.c](Keil%20project/LED/03-LED流水灯/手写移位/User/main.c) |
+| 03-流水灯(B) | `Keil project/LED/03-LED流水灯/库函数移位/` | `_crol_`/`_cror_` 双向移位 | [main.c](Keil%20project/LED/03-LED流水灯/库函数移位/User/main.c) |
+| 03-流水灯(C) | `Keil project/LED/03-LED流水灯/双向移位/` | `typedef`+`#define` 工程风格 | [main.c](Keil%20project/LED/03-LED流水灯/双向移位/User/main.c) |
+| 练习1 | `Keil project/LED/04-LED练习/练习1/` | 8灯亮1s灭0.5s（修正版） | [main.c](Keil%20project/LED/04-LED练习/练习1/User/main.c) |
+| 练习2 | `Keil project/LED/04-LED练习/练习2/` | 双灯流水灯 `0xFC`+`_crol_` | [main.c](Keil%20project/LED/04-LED练习/练习2/User/main.c) |
 
 > 📖 详细笔记：[notes/03_基础外设/LED.md](notes/03_基础外设/LED.md)
 
@@ -69,10 +79,11 @@
 
 | 实验 | 路径 | 功能 | 源码 |
 |:---|:---|:---|:---|
-| 05-方向+启停 | `Keil project/按键/05-独立按键控制流水灯方向和启停/` | K1 启停、K2 切方向 | [main.c](Keil%20project/按键/05-独立按键控制流水灯方向和启停/main.c) |
-| 06-LED亮灭 | `Keil project/按键/06-独立按键控制LED亮灭/` | K1 翻转单个 LED | [main.c](Keil%20project/按键/06-独立按键控制LED亮灭/main.c) |
-| 07-二进制显示 | `Keil project/按键/07-独立按键控制LED显示二进制/` | K1 每按一次二进制 +1 | [main.c](Keil%20project/按键/07-独立按键控制LED显示二进制/main.c) |
-| 08-LED移位 | `Keil project/按键/08-独立按键控制LED移位/` | K1 每按一次左移一位 | [main.c](Keil%20project/按键/08-独立按键控制LED移位/main.c) |
+| 05-方向+启停 | `Keil project/按键/05-独立按键控制流水灯方向和启停/` | K1 启停、K2 切方向 | [main.c](Keil%20project/按键/05-独立按键控制流水灯方向和启停/User/main.c) |
+| 06-LED亮灭 | `Keil project/按键/06-独立按键控制LED亮灭/` | K1 翻转单个 LED | [main.c](Keil%20project/按键/06-独立按键控制LED亮灭/User/main.c) |
+| 07-二进制显示 | `Keil project/按键/07-独立按键控制LED显示二进制/` | K1 每按一次二进制 +1 | [main.c](Keil%20project/按键/07-独立按键控制LED显示二进制/User/main.c) |
+| 08-LED移位 | `Keil project/按键/08-独立按键控制LED移位/` | K1 每按一次左移一位 | [main.c](Keil%20project/按键/08-独立按键控制LED移位/User/main.c) |
+| 按键模块化 | `Keil project/按键/按键模块化/` | 按规范拆分 Driver / System / User 分层 | [main.c](Keil%20project/按键/按键模块化/User/main.c) |
 
 ### 功能说明（05-方向+启停）
 
@@ -81,40 +92,60 @@
 
 > 📖 详细笔记：[notes/03_基础外设/按键.md](notes/03_基础外设/按键.md)
 
+## 矩阵键盘实验
+
+| 实验 | 路径 | 知识点 | 源码 |
+|:---|:---|:---|:---|
+| 矩阵键盘扫描 | `Keil project/矩阵键盘/矩阵键盘扫描/` | 4×4 行列扫描、按键消抖、S1~S8 按住点亮 D1~D8 | [main.c](Keil%20project/矩阵键盘/矩阵键盘扫描/User/main.c) |
+
+> 🚧 **当前状态（进行中）**：工程已按 User / Driver / System 拆好，`Project.uvproj` 已修正为引用实际文件；`MatrixKey_Scan.c` 还差收尾（缺函数声明与结尾括号，行判断 `P1 & 0x0F != 0x0F` 存在优先级问题），暂时编译不通过。
+>
+> 📖 详细笔记：[按键.md](notes/03_基础外设/按键.md) ｜ [矩阵按键.md](notes/03_基础外设/矩阵按键.md)
+
 ## 数码管实验
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 静态数码管 | `Keil project/数码管/静态数码管显示/` | 段码表、74HC245 + 74HC138 位选 | [main.c](Keil%20project/数码管/静态数码管显示/main.c) |
-| 动态数码管 | `Keil project/数码管/动态数码管显示/` | 视觉暂留、位选+段选扫描、消隐 | [main.c](Keil%20project/数码管/动态数码管显示/main.c) |
+| 静态数码管 | `Keil project/数码管/静态数码管显示/` | 段码表、74HC245 + 74HC138 位选 | [main.c](Keil%20project/数码管/静态数码管显示/User/main.c) |
+| 动态数码管 | `Keil project/数码管/动态数码管显示/` | 视觉暂留、位选+段选扫描、消隐 | [main.c](Keil%20project/数码管/动态数码管显示/User/main.c) |
 
 ## 蜂鸣器实验
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 蜂鸣器 | `Keil project/蜂鸣器/` | 有源/无源区别、ULN2003D 驱动、`BEEP=!BEEP` 定频 | [main.c](Keil%20project/蜂鸣器/main.c) |
+| 蜂鸣器 | `Keil project/蜂鸣器/蜂鸣器播放音乐/` | 有源/无源区别、ULN2003D 驱动、`BEEP=!BEEP` 定频 | [main.c](Keil%20project/蜂鸣器/蜂鸣器播放音乐/User/main.c) |
 
 ## LED点阵实验 ⭐
 
 | 实验 | 路径 | 知识点 | 源码 |
 |:---|:---|:---|:---|
-| 点阵显示图像 | `Keil project/LED点阵实验/` | 74HC595 串转并、8×8 列扫描、消影、位图取模 | [MAIN.c](Keil%20project/LED点阵实验/MAIN.c) |
+| 点阵显示图像 | `Keil project/LED点阵实验/点阵显示图像/` | 74HC595 串转并、8×8 列扫描、消影、位图取模 | [main.c](Keil%20project/LED点阵实验/点阵显示图像/User/main.c) |
 
 > ⚠️ 硬件前提：点阵旁的 **J24 黄色跳线帽**必须短接到 **GND** 一端，否则点阵不亮。
 >
-> 📖 详细笔记见 Obsidian 库：`04_实验与项目/51单片机学习笔记/03_基础外设/LED点阵.md`
+> 📖 详细笔记：[notes/03_基础外设/LED点阵.md](notes/03_基础外设/LED点阵.md) ｜ [notes/03_基础外设/74HC595.md](notes/03_基础外设/74HC595.md)
+
+## LCD1602 实验
+
+| 实验 | 路径 | 知识点 | 源码 |
+|:---|:---|:---|:---|
+| LCD1602 显示 | `Keil project/LCD1602/LCD1602显示/` | 8 位并口时序、命令/数据写入、光标定位、数字显示 | [main.c](Keil%20project/LCD1602/LCD1602显示/User/main.c) |
+| LCD1602 模块化 | `Keil project/LCD1602/LCD1602模块化/` | Driver / System / User 分层，引脚定义隔离在 .c | [main.c](Keil%20project/LCD1602/LCD1602模块化/User/main.c) |
+
+> ⚠️ 普中 A2 引脚固定：RS=P2.6、RW=P2.5、E=P2.7，接反会导致屏幕无响应。
+>
+> 📖 详细笔记：[notes/03_基础外设/LCD1602.md](notes/03_基础外设/LCD1602.md)（含 10 张时序/接线配图）
 
 ## 笔记系统
 
 学习笔记的**主库在 Obsidian**：`D:\obsidian\qisimiaoxiang\奇思妙想\04_实验与项目\51单片机学习笔记\`
 
-本仓库 [notes/](notes/) 目录保存同步过来的副本：
+本仓库 [notes/](notes/) 是主库的**镜像快照**，由 [sync-notes.ps1](sync-notes.ps1) 同步（镜像式：主库删掉的文件这里也会删）。**改笔记请先改 Obsidian，再跑一次脚本。**
 
-**00_索引**
+**00_索引**（建议从 MOC 开始看）
 
-- [51单片机MOC.md](notes/00_索引/51单片机MOC.md) — 内容地图与学习路径
-- [README.md](notes/00_索引/README.md) — 笔记索引与实验代码速查
-- [学习画像.md](notes/00_索引/学习画像.md) — 学习背景与目标
+- [51单片机MOC.md](notes/00_索引/51单片机MOC.md) — 唯一入口：20 篇笔记的阅读顺序、知识地图、待办
+- [学习画像.md](notes/00_索引/学习画像.md) — 学习背景、硬件环境、已掌握 / 待学习清单
 
 **01_入门准备**
 
@@ -122,34 +153,40 @@
 
 **02_编程基础**
 
-- [单片机C编程地基.md](notes/02_编程基础/单片机C编程地基.md) — `typedef`、`#define`、延时函数
-- [51单片机C语言实战.md](notes/02_编程基础/51单片机C语言实战.md)
+- [单片机C编程地基.md](notes/02_编程基础/单片机C编程地基.md) — 寄存器直操、`sfr`/`sbit`、位运算、延时原理
+- [51单片机C语言实战.md](notes/02_编程基础/51单片机C语言实战.md) — 源码骨架、语法击破、4 步写程序套路
+- [模块化编程.md](notes/02_编程基础/模块化编程.md) — `.c`/`.h` 分工、头文件卫士、Keil 多文件工程
 
 **03_基础外设**
 
 - [GPIO.md](notes/03_基础外设/GPIO.md) — IO 口结构与驱动能力
+- [LED原理详解.md](notes/03_基础外设/LED原理详解.md) — 低电平点亮原理、限流电阻
 - [LED.md](notes/03_基础外设/LED.md) — `sbit`、流水灯、移位函数
 - [按键.md](notes/03_基础外设/按键.md) — 消抖原理、`key_scan()`、4 个实战工程
-- [矩阵按键.md](notes/03_基础外设/矩阵按键.md)
+- [矩阵按键.md](notes/03_基础外设/矩阵按键.md) — 4×4 行列扫描、线翻转法
 - [蜂鸣器.md](notes/03_基础外设/蜂鸣器.md) — 有源/无源、ULN2003D、《稻香》播放器
 - [静态数码管.md](notes/03_基础外设/静态数码管.md) — 段码表、74HC245 + 74HC138
-- [动态数码管.md](notes/03_基础外设/动态数码管.md) — 视觉暂留、扫描、消隐、定时器中断重构
+- [动态数码管.md](notes/03_基础外设/动态数码管.md) — 视觉暂留、扫描、消隐
+- [74HC595.md](notes/03_基础外设/74HC595.md) — 串入并出移位寄存器、级联
 - [LED点阵.md](notes/03_基础外设/LED点阵.md) — 74HC595 串转并、8×8 列扫、心形图案
+- [定时器与中断.md](notes/03_基础外设/定时器与中断.md) — 定时器/计数器、中断系统、代码骨架（🔄 概念卡）
+- [LCD1602.md](notes/03_基础外设/LCD1602.md) — DDRAM 地址、指令集、初始化时序（配 10 张图）
 
 **04_参考资料**
 
 - [模块原理图.md](notes/04_参考资料/模块原理图.md) — 普中A2各模块引脚连接
-- [工具库.md](notes/04_参考资料/工具库.md) — `REGX52.H`、`intrins.h`
-- [GitHub_LED实验完整手册.md](notes/04_参考资料/GitHub_LED实验完整手册.md)
-- [Obsidian_51单片机LED笔记.md](notes/04_参考资料/Obsidian_51单片机LED笔记.md)
+- [工具库.md](notes/04_参考资料/工具库.md) — `REGX52.H`、`intrins.h`、延时函数、工具链
+- [LED实验完整手册.md](notes/04_参考资料/LED实验完整手册.md) — LED 全流程手册（TOC + 故障排查）
+- [代码规范.md](notes/04_参考资料/代码规范.md) — V2.1：五条硬规则、三层模块划分、注释与自查清单
 
-> ⚠️ **同步提示**：Obsidian 主库更新更快，`notes/` 下的副本可能滞后。以 Obsidian 为准。
+> ⚠️ **同步提示**：Obsidian 主库更新更快，`notes/` 是镜像快照；最新内容以 Obsidian 为准。
 
 ## 下一步
 
-1. 学习**定时器**实现精确延时（替代软件延时）
-2. 学习**中断**系统，实现按键中断与定时器中断
-3. 把 LED点阵工程改造成自己的版本（换图案 / 加动画）
+1. 收尾**矩阵键盘**：补完 `MatrixKey_Scan.c`，让工程能编译并实现"按住点亮"
+2. **定时器**实战：定时器中断 + PWM 呼吸灯（替代软件延时）
+3. **外部中断**与**串口通信**（UART、波特率、与 PC 通信）
+4. 扩展：TFT 彩屏、传感器（DS18B20、红外、ADC）
 
 ## 作者
 

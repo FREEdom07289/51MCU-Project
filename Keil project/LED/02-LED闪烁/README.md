@@ -19,7 +19,7 @@
 
 | 文件 | 说明 |
 |:---|:---|
-| [main.c](main.c) | LED闪烁源码（含注释掉的早期单灯版本） |
+| [main.c](User/main.c) | LED闪烁源码（含注释掉的早期单灯版本） |
 | [STARTUP.A51](STARTUP.A51) | Keil 启动文件（初始化 RAM、跳转 main） |
 | `project.uvproj` | Keil uVision5 工程文件 |
 

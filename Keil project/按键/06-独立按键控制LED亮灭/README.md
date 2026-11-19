@@ -27,13 +27,14 @@
 ### 按键消抖标准流程
 
 ```c
-if(KEY1 == 0)           // ① 检测按下
+if (KEY_1 == 0)                     // ① 检测按下
 {
-    delay_ms(20);       // ② 延时20ms等抖动过去
-    if(KEY1 == 0)       // ③ 再次确认
+    Delay_ms(KEY_DEBOUNCE_MS);      // ② 等抖动过去
+    if (KEY_1 == 0)                 // ③ 再次确认
     {
-        while(KEY1 == 0); // ④ 等待松开（防连击）
-        // 执行动作（如翻转LED）...
+        while (KEY_1 == 0);         // ④ 等待松开（防连击）
+        Delay_ms(KEY_DEBOUNCE_MS);  // ⑤ 松手同样有抖动，再消抖一次
+        return KEY_VALUE_K1;        // 返回键值，main 只负责处理流程
     }
 }
 ```
@@ -41,17 +42,25 @@ if(KEY1 == 0)           // ① 检测按下
 ### LED翻转核心语句
 
 ```c
-LED1 = !LED1;   // 取反：1→0（亮）或 0→1（灭）
+/* main.c：只判断键值，不碰引脚 */
+if (KEY_Scan() == KEY_VALUE_K1)
+{
+    LED_Toggle();
+}
+
+/* LED.c：真正操作引脚 */
+sbit LED_D1 = P2^0;
+LED_D1 = !LED_D1;   // 取反：0→亮，1→灭
 ```
 
 ### 关键技术点
 
 | 知识点 | 代码 | 说明 |
 |:---|:---|:---|
-| 消抖 | `delay_ms(20)` | 机械按键抖动约5-20ms，延时跳过抖动期 |
-| 防连击 | `while(KEY1 == 0);` | 按着不松手只会触发一次 |
-| 位操作 | `sbit LED1 = P2^0;` | 单独控制P2.0这一个引脚 |
-| 状态翻转 | `LED1 = !LED1;` | 取反运算，亮灭交替 |
+| 消抖 | `Delay_ms(KEY_DEBOUNCE_MS)` | 机械按键抖动约5-20ms，延时跳过抖动期 |
+| 防连击 | `while (KEY_1 == 0);` | 按着不松手只会触发一次 |
+| 位操作 | `sbit LED_D1 = P2^0;` | 单独控制P2.0这一个引脚（放在 LED.c 内） |
+| 状态翻转 | `LED_Toggle();` | 取反运算封装进驱动，main 不碰引脚 |
 
 ## 与05项目的对比
 
@@ -60,7 +69,7 @@ LED1 = !LED1;   // 取反：1→0（亮）或 0→1（灭）
 | 按键数量 | 2个（K1、K2） | 1个（K1） |
 | LED数量 | 8个（P2.0~P2.7） | 1个（P2.0） |
 | 功能复杂度 | 方向切换 + 启停控制 | 单LED翻转 |
-| 涉及头文件 | `REGX52.H` + `INTRINS.H` | 仅 `REGX52.H` |
+| 涉及头文件 | `INTRINS.H` + `LED.h` / `KEY.h` / `Delay.h` | `LED.h` / `KEY.h` |
 | 适合阶段 | 掌握消抖后的综合练习 | **按键消抖入门实验** |
 
 > 💡 建议先完成06项目理解消抖基础，再做05项目综合练习。
@@ -73,8 +82,13 @@ LED1 = !LED1;   // 取反：1→0（亮）或 0→1（灭）
 
 ## 文件
 
+工程按三层结构组织：
+
 | 文件 | 说明 |
 |:---|:---|
-| [main.c](main.c) | ✅ 按键消抖 + LED翻转（完整版） |
+| [User/main.c](User/main.c) | ✅ 主流程：检测键值，翻转 D1 |
+| [Driver/KEY.c](Driver/KEY.c) / [KEY.h](Driver/KEY.h) | 按键扫描：消抖、松手等待、返回键值 |
+| [Driver/LED.c](Driver/LED.c) / [LED.h](Driver/LED.h) | D1 的引脚操作与状态翻转 |
+| [System/Delay.c](System/Delay.c) / [Delay.h](System/Delay.h) | 毫秒级软件延时 |
 
 > 📖 学习笔记：[notes/按键.md](../../../notes/03_基础外设/按键.md)

@@ -1,0 +1,26 @@
+/**
+ * @file    KEY.h
+ * @brief   独立按键驱动模块对外接口
+ * @author  FREEDOM
+ * @version V1.0
+ * @date    2026-11-14
+ * @note    硬件引脚（普中 A2 独立按键模块）：K1 -> P3.1，K2 -> P3.0，K3 -> P3.2，按下为低电平
+ *          修改记录：
+ *            V1.0 2026-11-14 从 LCD1602 单文件代码中拆出按键扫描
+ */
+
+#ifndef __KEY_H
+#define __KEY_H
+
+/* ==================== 键值定义 ==================== */
+
+#define KEY_VALUE_NONE  0   /* 无按键按下 */
+#define KEY_VALUE_K1    1   /* K1 按下，对应 P3.1 */
+#define KEY_VALUE_K2    2   /* K2 按下，对应 P3.0 */
+#define KEY_VALUE_K3    3   /* K3 按下，对应 P3.2 */
+
+/* ==================== 对外接口声明 ==================== */
+
+unsigned char KEY_Scan(void);
+
+#endif

@@ -19,7 +19,7 @@
 
 | 文件 | 说明 |
 |:---|:---|
-| [main.c](main.c) | 点亮D1（P2.0）的源码 |
+| [main.c](User/main.c) | 点亮D1（P2.0）的源码 |
 | `project.uvproj` | Keil uVision5 工程文件 |
 
 ## 硬件连接

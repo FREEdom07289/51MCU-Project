@@ -4,16 +4,15 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
-                "D:/keil/C51/INC",
-                "D:/keil/C51/INC/Atmel"
+                "D:/APP/Keil/C51/INC",
+                "D:/APP/Keil/C51/INC/Atmel"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "intelliSenseMode": "windows-gcc-x86",
-            "compilerPath": "D:/keil/C51/BIN/C51.exe"
+            "intelliSenseMode": "windows-gcc-x86"
         }
     ],
     "version": 4
