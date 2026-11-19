@@ -46,7 +46,7 @@ unsigned char MatrixKey_Scan(void)
 
     for (Col = 0; Col < KEYPAD_COL_NUM; Col++)
     {
-        KEYPAD_PORT = (unsigned char)~(0x01 << Col);    /* 0xF7→0xFB→0xFD→0xFE，逐列拉低 */
+        KEYPAD_PORT = (unsigned char)~(0x08 >> Col);    /* 0xF7→0xFB→0xFD→0xFE，逐列拉低 P1.3→P1.0 */
 
         RowState = KeyPad_ReadRow();
         if (RowState == KEYPAD_ROW_MASK)                /* 0xF0：四行都是高，本列没键 */
